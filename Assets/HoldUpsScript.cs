@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using KModkit;
 using System;
@@ -1129,11 +1130,11 @@ public class HoldUpsScript : MonoBehaviour
             ShadowPersonality.SetActive(true);
             if (Personality == "Upbeat" || Personality == "Irritable")
             {
-                Debug.LogFormat("[Hold Ups #{0}] (Stage: Negitiation) The personality is {1}, so the action is to ask for money", moduleID, Personality);
+                Debug.LogFormat("[Hold Ups #{0}] (Stage: Negotiation) The personality is {1}, so the action is to ask for money", moduleID, Personality);
             }
             else
             {
-                Debug.LogFormat("[Hold Ups #{0}] (Stage: Negitiation) The personality is {1}, so the action is to ask for items", moduleID, Personality);
+                Debug.LogFormat("[Hold Ups #{0}] (Stage: Negotiation) The personality is {1}, so the action is to ask for items", moduleID, Personality);
             }
         }
         else
@@ -1286,5 +1287,254 @@ public class HoldUpsScript : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
         }
         StartCoroutine(FlagAnimation());
+    }
+
+    //twitch plays
+    private bool paramsValid1(string s, string s2)
+    {
+        if(s.EqualsIgnoreCase("Blazing") && s2.EqualsIgnoreCase("Hell"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Diamond") && s2.EqualsIgnoreCase("Dust"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Ice") && s2.EqualsIgnoreCase("Age"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Thunder") && s2.EqualsIgnoreCase("Reign"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Wild") && s2.EqualsIgnoreCase("Thunder"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Phanta") && s2.EqualsIgnoreCase("Rhei"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Vaccuum") && s2.EqualsIgnoreCase("Wave"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Atomic") && s2.EqualsIgnoreCase("Flare"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Cosmic") && s2.EqualsIgnoreCase("Flare"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Psycho") && s2.EqualsIgnoreCase("Force"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Psycho") && s2.EqualsIgnoreCase("Blast"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("One-Shot") && s2.EqualsIgnoreCase("Kill"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Triple") && s2.EqualsIgnoreCase("Down"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Riot") && s2.EqualsIgnoreCase("Gun"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Divine") && s2.EqualsIgnoreCase("Judgement"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Shining") && s2.EqualsIgnoreCase("Arrows"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Demonic") && s2.EqualsIgnoreCase("Decree"))
+        {
+            return true;
+        }
+        else if (s.EqualsIgnoreCase("Abyssal") && s2.EqualsIgnoreCase("Wings"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool paramsValid2(string s)
+    {
+        string[] validMoves = { "agilao", "inferno", "maragidyne", "bufula", "mabufudyne", "zionga", "maziodyne", "garula", "magarudyne", "freila", "mafreidyne", "psio", "mapsiodyne", "snap", "kouga", "makougaon", "eiga", "maeigaon" };
+        s = s.ToLower();
+        if (!validMoves.Contains(s))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    #pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"!{0} use <move> [Performs the specified move] | !{0} attack/break/talk/items/money [On a hold up, performs the specified action]";
+    #pragma warning restore 414
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        if (Regex.IsMatch(command, @"^\s*attack\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*all-out attack\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (HoldUpPhase.active == true && MoneyBtnObject.active == false)
+            {
+                yield return null;
+                AllOutAttackBtn.OnInteract();
+            }
+            else
+            {
+                yield return "sendtochaterror You are not currently in the initial Hold-Up phase! Why perform an 'All-Out Attack'?";
+            }
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*break\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*break formation\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (HoldUpPhase.active == true && MoneyBtnObject.active == false)
+            {
+                yield return null;
+                BreakFormationBtn.OnInteract();
+            }
+            else
+            {
+                yield return "sendtochaterror You are not currently in the initial Hold-Up phase! Why perform a 'Formation Break'?";
+            }
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*talk\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*negotiate\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (HoldUpPhase.active == true && MoneyBtnObject.active == false)
+            {
+                yield return null;
+                TalkBtn.OnInteract();
+            }
+            else
+            {
+                yield return "sendtochaterror You are not currently in the initial Hold-Up phase! Why perform a 'Negotiation'?";
+            }
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*items\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*item\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*I want an item\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (HoldUpPhase.active == true && MoneyBtnObject.active == true)
+            {
+                yield return null;
+                ItemsBtn.OnInteract();
+            }
+            else
+            {
+                yield return "sendtochaterror You are not currently in the negotiation Hold-Up phase! Why 'ask for an item'?";
+            }
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*money\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*Give me some money\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (HoldUpPhase.active == true && MoneyBtnObject.active == true)
+            {
+                yield return null;
+                MoneyBtn.OnInteract();
+            }
+            else
+            {
+                yield return "sendtochaterror You are not currently in the negotiation Hold-Up phase! Why 'ask for some money'?";
+            }
+            yield break;
+        }
+
+        string[] parameters = command.Split(' ');
+        if (Regex.IsMatch(parameters[0], @"^\s*use\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if(parameters.Length == 3)
+            {
+                if(paramsValid1(parameters[1], parameters[2]))
+                {
+                    string checker = "";
+                    if(parameters[1].EqualsIgnoreCase("Divine") && parameters[2].EqualsIgnoreCase("Judgement"))
+                    {
+                        checker = "Divine\nJudgement";
+                    }
+                    else if (parameters[1].EqualsIgnoreCase("Demonic") && parameters[2].EqualsIgnoreCase("Decree"))
+                    {
+                        checker = "Demonic\nDecree";
+                    }
+                    else
+                    {
+                        checker = parameters[1]+" "+parameters[2];
+                    }
+
+                    if (Moves[0].EqualsIgnoreCase(checker))
+                    {
+                        yield return null;
+                        Move1Button.OnInteract();
+                    }
+                    else if (Moves[1].EqualsIgnoreCase(checker))
+                    {
+                        yield return null;
+                        Move2Button.OnInteract();
+                    }
+                    else if (Moves[2].EqualsIgnoreCase(checker))
+                    {
+                        yield return null;
+                        Move3Button.OnInteract();
+                    }
+                    else if (Moves[3].EqualsIgnoreCase(checker))
+                    {
+                        yield return null;
+                        Move4Button.OnInteract();
+                    }
+                    else
+                    {
+                        yield return "sendtochaterror This move is not an option right now!";
+                    }
+                }
+                else
+                {
+                    yield return "sendtochaterror I do not recognize this kind of move!";
+                }
+            }
+            else if(parameters.Length == 2)
+            {
+                if (paramsValid2(parameters[1]))
+                {
+                    if (Moves[0].EqualsIgnoreCase(parameters[1]))
+                    {
+                        yield return null;
+                        Move1Button.OnInteract();
+                    }
+                    else if (Moves[1].EqualsIgnoreCase(parameters[1]))
+                    {
+                        yield return null;
+                        Move2Button.OnInteract();
+                    }
+                    else if (Moves[2].EqualsIgnoreCase(parameters[1]))
+                    {
+                        yield return null;
+                        Move3Button.OnInteract();
+                    }
+                    else if (Moves[3].EqualsIgnoreCase(parameters[1]))
+                    {
+                        yield return null;
+                        Move4Button.OnInteract();
+                    }
+                    else
+                    {
+                        yield return "sendtochaterror This move is not an option right now!";
+                    }
+                }
+                else
+                {
+                    yield return "sendtochaterror I do not recognize this kind of move!";
+                }
+            }
+            yield break;
+        }
     }
 }
