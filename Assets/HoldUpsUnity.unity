@@ -207,6 +207,12 @@ Prefab:
       propertyPath: AudioClips.Array.data[8]
       value: 
       objectReference: {fileID: 8300000, guid: cc1e6e947bbe2a3489681a2bfa5df287, type: 3}
+    - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
+        type: 2}
+      propertyPath: EdgeworkConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: fefbd79a9ec63eb4c8c8968209337082,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8814ea52310d2614a9feda02ec355ae4, type: 2}
   m_IsPrefabParent: 0

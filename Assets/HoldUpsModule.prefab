@@ -4676,7 +4676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModuleType: KritHoldUps
-  ModuleDisplayName: Hold Up's
+  ModuleDisplayName: Hold Ups
   RequiresTimerVisibility: 1
 --- !u!114 &114117811178757456
 MonoBehaviour:

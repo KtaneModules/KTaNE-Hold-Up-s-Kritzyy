@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: ModConfig
   m_EditorClassIdentifier: 
   id: KritHoldUps
-  title: Hold Up's
+  title: Hold Ups
   author: Kritzy
   description: '"Well then, let''s do the first step: Knock all the enemies down,
     and do a Hold Up!"
