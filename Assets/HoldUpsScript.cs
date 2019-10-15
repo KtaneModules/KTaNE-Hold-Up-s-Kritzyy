@@ -1080,7 +1080,7 @@ public class HoldUpsScript : MonoBehaviour
     void HoldUpActionGenerator()
     {
         string Indic = string.Join("", BombInfo.GetIndicators().ToArray());
-        if (Indic.Any("JOKER".Contains) && Indic.Any("MONA".Contains) && Indic.Any("JOKER".Contains))
+        if (Indic.Any("JOKER".Contains) && Indic.Any("MONA".Contains) && Indic.Any("SKULL".Contains))
         {
             DesiredHoldUpAction = "perform an All-Out Attack";
         }

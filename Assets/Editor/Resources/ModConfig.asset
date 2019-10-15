@@ -14,21 +14,11 @@ MonoBehaviour:
   id: KritHoldUps
   title: Hold Ups
   author: Kritzy
-  description: '"Well then, let''s do the first step: Knock all the enemies down,
-    and do a Hold Up!"
-
-
-    Based off of the JRPG Persona 5.
-
-    Credits to Samfun123 for finding the sound effects.
-
-
-    Module ID: KritHoldUps
-
-
-    Manual (HTML): Coming soon
-
-    Manual (PDF temporary): Coming soon'
+  description: "\"Well then, let's do the first step: Knock all the enemies down,
+    and do a Hold Up!\"\r\n\r\nBased off of the JRPG Persona 5.\r\nCredits to Samfun123
+    for finding the sound effects.\r\nCredits to eXish for Twitch Plays.\r\n\r\nModule
+    ID: KritHoldUps\r\n\r\nManual (HTML): https://ktane.timwi.de/HTML/Hold%20Ups.html\r\nManual
+    (PDF): https://ktane.timwi.de/PDF/Hold%20Ups.pdf"
   version: V5
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 481a850806455884999034003a66118a, type: 3}
