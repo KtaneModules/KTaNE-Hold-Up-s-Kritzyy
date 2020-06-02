@@ -74,7 +74,7 @@ public class HoldUpsScript : MonoBehaviour
     };
     List<string> ShadowsWeakToNuclear = new List<string>()
     {
-        "High Pxie", "Yaksini", "Anzu"
+        "High Pixie", "Yaksini", "Anzu"
     };
     List<string> ShadowsWeakToGun = new List<string>()
     {
@@ -1385,9 +1385,9 @@ public class HoldUpsScript : MonoBehaviour
     {
         if (Regex.IsMatch(command, @"^\s*attack\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*all-out attack\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if (HoldUpPhase.active == true && MoneyBtnObject.active == false)
+            yield return null;
+            if (HoldUpPhase.activeSelf == true && MoneyBtnObject.activeSelf == false)
             {
-                yield return null;
                 AllOutAttackBtn.OnInteract();
             }
             else
@@ -1398,9 +1398,9 @@ public class HoldUpsScript : MonoBehaviour
         }
         if (Regex.IsMatch(command, @"^\s*break\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*break formation\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if (HoldUpPhase.active == true && MoneyBtnObject.active == false)
+            yield return null;
+            if (HoldUpPhase.activeSelf == true && MoneyBtnObject.activeSelf == false)
             {
-                yield return null;
                 BreakFormationBtn.OnInteract();
             }
             else
@@ -1411,9 +1411,9 @@ public class HoldUpsScript : MonoBehaviour
         }
         if (Regex.IsMatch(command, @"^\s*talk\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*negotiate\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if (HoldUpPhase.active == true && MoneyBtnObject.active == false)
+            yield return null;
+            if (HoldUpPhase.activeSelf == true && MoneyBtnObject.activeSelf == false)
             {
-                yield return null;
                 TalkBtn.OnInteract();
             }
             else
@@ -1424,9 +1424,9 @@ public class HoldUpsScript : MonoBehaviour
         }
         if (Regex.IsMatch(command, @"^\s*items\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*item\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*I want an item\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if (HoldUpPhase.active == true && MoneyBtnObject.active == true)
+            yield return null;
+            if (HoldUpPhase.activeSelf == true && MoneyBtnObject.activeSelf == true)
             {
-                yield return null;
                 ItemsBtn.OnInteract();
             }
             else
@@ -1437,9 +1437,9 @@ public class HoldUpsScript : MonoBehaviour
         }
         if (Regex.IsMatch(command, @"^\s*money\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*Give me some money\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if (HoldUpPhase.active == true && MoneyBtnObject.active == true)
+            yield return null;
+            if (HoldUpPhase.activeSelf == true && MoneyBtnObject.activeSelf == true)
             {
-                yield return null;
                 MoneyBtn.OnInteract();
             }
             else
@@ -1452,13 +1452,14 @@ public class HoldUpsScript : MonoBehaviour
         string[] parameters = command.Split(' ');
         if (Regex.IsMatch(parameters[0], @"^\s*use\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if(parameters.Length == 3)
+            if (parameters.Length == 3)
             {
-                if(paramsValid1(parameters[1], parameters[2]))
+                yield return null;
+                if (paramsValid1(parameters[1], parameters[2]))
                 {
-                    if(HoldUpPhase.active == true)
+                    if (HoldUpPhase.activeSelf == true)
                     {
-                        yield return "You are not currently in the Knock Down Phase! Why 'perform a move'?";
+                        yield return "sendtochaterror You are not currently in the Knock Down Phase! Why 'perform a move'?";
                     }
                     else
                     {
@@ -1478,22 +1479,18 @@ public class HoldUpsScript : MonoBehaviour
 
                         if (Moves[0].EqualsIgnoreCase(checker))
                         {
-                            yield return null;
                             Move1Button.OnInteract();
                         }
                         else if (Moves[1].EqualsIgnoreCase(checker))
                         {
-                            yield return null;
                             Move2Button.OnInteract();
                         }
                         else if (Moves[2].EqualsIgnoreCase(checker))
                         {
-                            yield return null;
                             Move3Button.OnInteract();
                         }
                         else if (Moves[3].EqualsIgnoreCase(checker))
                         {
-                            yield return null;
                             Move4Button.OnInteract();
                         }
                         else
@@ -1509,32 +1506,29 @@ public class HoldUpsScript : MonoBehaviour
             }
             else if(parameters.Length == 2)
             {
+                yield return null;
                 if (paramsValid2(parameters[1]))
                 {
-                    if (HoldUpPhase.active == true)
+                    if (HoldUpPhase.activeSelf == true)
                     {
-                        yield return "You are not currently in the Knock Down Phase! Why 'perform a move'?";
+                        yield return "sendtochaterror You are not currently in the Knock Down Phase! Why 'perform a move'?";
                     }
                     else
                     {
                         if (Moves[0].EqualsIgnoreCase(parameters[1]))
                         {
-                            yield return null;
                             Move1Button.OnInteract();
                         }
                         else if (Moves[1].EqualsIgnoreCase(parameters[1]))
                         {
-                            yield return null;
                             Move2Button.OnInteract();
                         }
                         else if (Moves[2].EqualsIgnoreCase(parameters[1]))
                         {
-                            yield return null;
                             Move3Button.OnInteract();
                         }
                         else if (Moves[3].EqualsIgnoreCase(parameters[1]))
                         {
-                            yield return null;
                             Move4Button.OnInteract();
                         }
                         else
@@ -1549,6 +1543,57 @@ public class HoldUpsScript : MonoBehaviour
                 }
             }
             yield break;
+        }
+    }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        if (!HoldUpPhase.activeSelf)
+        {
+            KMSelectable[] moveBtns = new KMSelectable[] { Move1Button, Move2Button, Move3Button, Move4Button };
+            int start = StageNr - 1;
+            int end = 0;
+            if (FiveDowns)
+                end = 5;
+            else
+                end = 3;
+            for (int i = start; i < end; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (MoveTypes[j] == Weakness)
+                    {
+                        moveBtns[j].OnInteract();
+                        yield return new WaitForSeconds(0.1f);
+                        break;
+                    }
+                }
+            }
+        }
+        while (!HoldUpPhase.activeSelf) { yield return true; yield return new WaitForSeconds(0.1f); }
+        if (DesiredHoldUpAction == "perform an All-Out Attack")
+        {
+            AllOutAttackBtn.OnInteract();
+        }
+        else if (DesiredHoldUpAction == "break formation")
+        {
+            BreakFormationBtn.OnInteract();
+        }
+        else if (DesiredHoldUpAction == "negotiate" && !MoneyBtnObject.activeSelf)
+        {
+            TalkBtn.OnInteract();
+            yield return new WaitForSeconds(0.1f);
+        }
+        if (MoneyBtnObject.activeSelf)
+        {
+            if (Personality == "Upbeat" || Personality == "Irritable")
+            {
+                MoneyBtn.OnInteract();
+            }
+            else
+            {
+                ItemsBtn.OnInteract();
+            }
         }
     }
 }
