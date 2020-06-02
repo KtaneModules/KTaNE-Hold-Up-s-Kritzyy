@@ -2,7 +2,7 @@
       "Author": "Kritzy",
       "Compatibility": "Compatible",
 	  "DefuserDifficulty": "Easy",
-      "Description": "Use 3-5 correct moves to down opponents, and use the correct action during a \"Hold Up\".",
+      "Description": "Use 3-5 correct moves to down opponents, and use the correct action during a \"Hold Up\". Tags: Persona, Shadow, All-Out, Attack",
 	  "ExpertDifficulty": "Normal",
       "ModuleID": "KritHoldUps",
       "Name": "Hold Ups",
@@ -10,5 +10,6 @@
       "Published": "2019-09-01",
       "SortKey": "HOLDUPS",
       "SteamID": "1851658953",
+	  "Symbol": "Up",
       "Type": "Regular"
     },
