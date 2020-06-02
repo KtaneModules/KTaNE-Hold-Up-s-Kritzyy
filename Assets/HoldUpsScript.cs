@@ -1092,7 +1092,7 @@ public class HoldUpsScript : MonoBehaviour
         {
             DesiredHoldUpAction = "negotiate";
         }
-        Debug.LogFormat("[Hold Ups #{0}] (Stage: Hold Up) , so the desired Hold Up action is to {1}", moduleID, DesiredHoldUpAction);
+        Debug.LogFormat("[Hold Ups #{0}] (Stage: Hold Up) the desired Hold Up action is to {1}", moduleID, DesiredHoldUpAction);
     }
 
     protected bool HandleAllOutAttack()
