@@ -1457,7 +1457,7 @@ public class HoldUpsScript : MonoBehaviour
                 yield return null;
                 if (paramsValid1(parameters[1], parameters[2]))
                 {
-                    if(HoldUpPhase.activeSelf == true)
+                    if (HoldUpPhase.activeSelf == true)
                     {
                         yield return "sendtochaterror You are not currently in the Knock Down Phase! Why 'perform a move'?";
                     }
